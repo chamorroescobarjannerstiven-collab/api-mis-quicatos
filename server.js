@@ -3,8 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./src/config/db'); 
 
-// IMPORTANTE: Importamos el archivo de rutas elegante
+// Importamos los archivos de rutas
 const productoRoutes = require('./src/routes/productoRoutes');
+const categoriaRoutes = require('./src/routes/categoriaRoutes'); // <--- NUEVA LÍNEA
 
 const app = express();
 
@@ -19,8 +20,9 @@ app.get('/', (req, res) => {
     res.send('API de Mis Quicatos funcionando correctamente y organizada');
 });
 
-// 2. CONECTAMOS LAS RUTAS (Esto reemplaza los app.get y app.post viejos)
+// 2. CONECTAMOS LAS RUTAS
 app.use('/api/productos', productoRoutes);
+app.use('/api/categorias', categoriaRoutes); // <--- NUEVA LÍNEA
 
 app.listen(PORT, () => {
     console.log(`Servidor elegante corriendo en el puerto ${PORT}`);
